@@ -1,48 +1,48 @@
 # TP 3 : Orchestration avec Kubernetes
 
-## Objectif
-Déployer deux microservices (`service-user` et `service-order`) sur Kubernetes et exposer le service de commandes au réseau externe.
-
-## Prérequis
-- [Minikube](https://minikube.sigs.k8s.io/docs/start/) ou un cluster Kubernetes fonctionnel.
-- [Docker](https://www.docker.com/) installé.
-- Outil en ligne de commande `kubectl` installé et configuré.
-- Outil `make` pour simplifier l'exécution des commandes.
-
 ## Structure du projet
-- `Deployment.yaml` : Fichier de configuration définissant les `Deployments` pour les deux applications.
-- `Service.yaml` : Fichier de configuration définissant un `Service` Kubernetes.
-- `Makefile` : Fichier contenant des raccourcis pratiques pour exécuter les commandes.
+- `Deployment.yaml` : Déploiements `service-user` (5001) et `service-order` (5002).
+- `Service.yaml` : 
+    - Service interne `service-user` (5001).
+    - Service externe `service-order` (LoadBalancer, port 80).
+- `Makefile` : Raccourcis de commandes.
 
-## Utilisation (Commandes Make)
+## Utilisation
 
-### 1. Déployer l'application
+### 1. Démarrer Minikube
+```bash
+make start
+```
+
+### 2. Builder les images
+Prépare les images dans l'environnement Docker de Minikube.
+```bash
+make build
+```
+
+### 3. Déployer
 ```bash
 make deploy
 ```
 
-### 2. Vérifier le statut
+### 4. Statut
 ```bash
 make status
 ```
 
-### 3. Tester l'API
-
-**Si vous utilisez Minikube**
+### 5. Accéder à l'API (Tunnel)
+Indispensable sur macOS/Docker pour obtenir l'URL d'accès. Garder le terminal ouvert.
 ```bash
 make get-url
 ```
 
+### 6. Tester
+Dans un second terminal :
 ```bash
-curl http://<EXTERNAL_IP>/orders
+curl <URL_DE_MAKE_GET_URL>/orders
 ```
 
-```bash
-make test
-```
-
-### 4. Nettoyer le déploiement
+### 7. Nettoyer
 ```bash
 make clean
 ```
-# conteneurisation-TP_J2-TP_3
