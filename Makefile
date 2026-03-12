@@ -19,9 +19,6 @@ status:
 get-url:
 	minikube service service-order --url
 
-test:
-	curl http://localhost/orders
-
 clean:
 	kubectl delete -f Service.yaml --ignore-not-found
 	kubectl delete -f Deployment.yaml --ignore-not-found
