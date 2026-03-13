@@ -1,11 +1,21 @@
 # TP 3 : Orchestration avec Kubernetes
 
-## Structure du projet
-- `Deployment.yaml` : Déploiements `service-user` (5001) et `service-order` (5002).
-- `Service.yaml` : 
-    - Service interne `service-user` (5001).
-    - Service externe `service-order` (LoadBalancer, port 80).
-- `Makefile` : Raccourcis de commandes.
+## Prérequis
+
+- Docker
+- Make
+- Kubernetes
+
+## Architecture du projet
+
+```bash
+.
+├── Deployment.yaml : deployment pour les microservices
+├── Makefile : makefile pour automatiser les tâches
+├── README.md : ce fichier
+├── Service.yaml : service pour les microservices
+└── instructions.pdf : instructions du TP
+```
 
 ## Utilisation
 
